@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% include 'message.html' with messages=messages %}
+        <div class="row">
+            <div class="col">
+                <h1 class="jumbotron">this is about page</h1>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="text-center">
+            <h2>Registration Form</h2>
+        </div>
+        <div class="row">
+            {% include 'message.html' with messages=messages %}
+            <div class="col">
+                <form action="#" method="Post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <br/>
+                    <button type="submit" class="btn btn-info btn-block">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include 'message.html' with messages=messages %}
+        <div class="row">
+        </div>
+    </div>
+{% endblock %}

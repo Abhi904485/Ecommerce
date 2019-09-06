@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include 'message.html' with messages=messages %}
+        <div class="row">
+            {% if cart.products.exists %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in cart.products.all %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>
+                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>{% include 'cart-update.html' with product=product cart=cart in_cart=True %}
+                            </td>
+
+                            <td>{{ product.product_price }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><b>Cart Subtotal : </b>${{ cart.cart_subtotal }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><b>Cart Total : </b>${{ cart.cart_total }} </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><a href="{% url 'cart:cart-checkout' %}" class="btn btn-success btn-lg">Checkout</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col lead">Cart is Empty !!
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col"><a href="{% url 'products:list' %}" class="btn btn-info">Continue Shopping</a>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

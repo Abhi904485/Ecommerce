@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="text-center">
+            <h2>Login Form</h2>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <br/>
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% include 'message.html' with messages=messages %}
+        <div class="row">
+            {% for product  in products_list %}
+                <div class="col col-md-4 mt-3">
+                    {% include 'products/card.html' with product=product %}
+                </div>
+            {% endfor %}
+            <br/>
+        </div>
+    </div>
+
+{% endblock %}

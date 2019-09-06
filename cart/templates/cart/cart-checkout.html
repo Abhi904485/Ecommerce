@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include 'message.html' with messages=messages %}
+        <h1>Checkout</h1>
+        <div class="row">
+            <p>Cart Total:{{ order.cart.cart_total }}</p>
+        </div>
+        <div class="row">
+            <p>Shipping Total:{{ order.order_shipping_total }}</p>
+        </div>
+        <div class="row">
+            <p>Order Total:{{ order.order_total }} </p>
+        </div>
+
+    </div>
+{% endblock %}

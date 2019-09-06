@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        {% if query %}
+            <h2>result for {{ query }}:</h2>
+{#        {% else %}#}
+{#            <div class="row">#}
+{#                <div class="col-12 col-md-6 mx-auto py-3">#}
+{#                    {% include 'search.html' %}#}
+{#                </div>#}
+{#            </div>#}
+        {% endif %}
+
+        <hr>
+        <div class="row mt-2">
+            {% for product  in products_list %}
+                <div class="col col-md-4 mt-3">
+                    {% include 'products/card.html' with product=product %}
+                </div>
+            {% endfor %}
+            <br/>
+        </div>
+    </div>
+
+{% endblock %}

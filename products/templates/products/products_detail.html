@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Ecommerce</title>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="col">{{ products.product_price }}</div>
+                <div class="col"> {{ products.product_description }}</div>
+                <div class="col">{{ products.product_title }}</div>
+                <div class="col">{{ products.product_featured }}</div>
+                <div class="col">{{ products.product_slug }}</div>
+                <div class="col"><img src="{{ products.product_image.url }}" width="50px" height="50px" alt=""></div>
+
+            </div>
+            <div class="col-12 col-md-6">
+                {% include 'cart-update.html' with product=products cart=cart %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

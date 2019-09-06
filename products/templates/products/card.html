@@ -1,0 +1,16 @@
+<div class="card">
+    {% if product.product_image %}
+        <a href="{{ product.get_absolute_url }}">
+            <img class="card-img-top" src="{{ product.product_image.url }}" alt="{{ product.product_title }} logo"
+                 width="100px" height="220px">
+        </a>
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ product.product_title }}</h5>
+        <p class="card-text">{{ product.product_description|truncatewords:18 }}</p>
+        <a href="{{ product.get_absolute_url }}" class="btn btn-primary">View</a>
+        {#        {% include 'cart-update.html' with cart=cart product=product %}#}
+        <a href="{% url 'products:detail' product_slug=product.product_slug %}" class="btn btn-warning">Detail</a>
+        <span class="text-right font-weight-bolder">${{ product.product_price }}</span>
+    </div>
+</div>
