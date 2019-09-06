@@ -46,6 +46,7 @@ INSTALLED_APPS = [
         'cart',
         'order',
         'accounts',
+        'billing',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,8 @@ TEMPLATES = [
                         os.path.join(BASE_DIR, 'templates', 'home'),
                         os.path.join(BASE_DIR, 'search', 'templates', 'search'),
                         os.path.join(BASE_DIR, 'cart', 'templates', 'cart'),
-                        os.path.join(BASE_DIR, 'order', 'templates', 'order')
+                        os.path.join(BASE_DIR, 'order', 'templates', 'order'),
+                        os.path.join(BASE_DIR, 'billing', 'templates', 'billing')
                 ],
                 'APP_DIRS': True,
                 'OPTIONS': {
@@ -161,3 +163,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
 )
+
+LOGOUT_REDIRECT_URL = '/login'
+LOGIN_REDIRECT_URL = '/products'
+LOGIN_URL = '/login'

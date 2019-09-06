@@ -17,7 +17,9 @@ class CartModelCustomQuerySet(models.query.QuerySet):
         return self.model.objects.create(cart_user=user_obj)
 
     def get_by_id_queryset(self, cart_id):
-        return self.model.objects.filter(cart_id=cart_id)
+        if cart_id:
+            return self.model.objects.filter(cart_id=cart_id)
+        return self.model.objects.all()
 
     def new_or_get_queryset(self, request):
         cart_id = request.session.get('cart_id', None)

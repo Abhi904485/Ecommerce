@@ -2,6 +2,7 @@ from django.db import models
 from cart.models import Cart
 from django.db.models.signals import pre_save, post_save
 from Ecommerce.utils import unique_order_id_generator
+from math import fsum
 
 
 # Create your models here.
@@ -52,7 +53,8 @@ class Orders(models.Model):
     def update_total(self):
         cart_total = self.cart.cart_total
         shipping_total = self.order_shipping_total
-        self.order_total = cart_total + shipping_total
+        new_total = fsum([cart_total, shipping_total])
+        self.order_total = format(new_total, '.2f')
         self.save()
         return self.order_total
 

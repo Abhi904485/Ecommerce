@@ -10,25 +10,31 @@
 {% block content %}
     <div class="container">
         {% include 'message.html' with messages=messages %}
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Cart Total</th>
-                <th scope="col">Shipping Total</th>
-                <th scope="col">Order total</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% if order %}
+        {% if not billing_profile %}
+            <p>Login As a Guest</p>
+            {% include 'accounts/snippets/form.html' with form=login_form next_url=request.build_absolute_uri %}
+        {% else %}
+            <table class="table">
+                <thead>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>{{ order.cart.cart_total }}</td>
-                    <td>{{ order.order_shipping_total }}</td>
-                    <td>{{ order.order_total }}</td>
+                    <th scope="col">#</th>
+                    <th scope="col">Cart Total</th>
+                    <th scope="col">Shipping Total</th>
+                    <th scope="col">Order total</th>
                 </tr>
-            {% endif %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% if order %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{ order.cart.cart_total }}</td>
+                        <td>{{ order.order_shipping_total }}</td>
+                        <td>{{ order.order_total }}</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        {% endif %}
+
     </div>
 {% endblock %}
