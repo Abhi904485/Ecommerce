@@ -10,16 +10,25 @@
 {% block content %}
     <div class="container">
         {% include 'message.html' with messages=messages %}
-        <h1>Checkout</h1>
-        <div class="row">
-            <p>Cart Total:{{ order.cart.cart_total }}</p>
-        </div>
-        <div class="row">
-            <p>Shipping Total:{{ order.order_shipping_total }}</p>
-        </div>
-        <div class="row">
-            <p>Order Total:{{ order.order_total }} </p>
-        </div>
-
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cart Total</th>
+                <th scope="col">Shipping Total</th>
+                <th scope="col">Order total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if order %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ order.cart.cart_total }}</td>
+                    <td>{{ order.order_shipping_total }}</td>
+                    <td>{{ order.order_total }}</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}

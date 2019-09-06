@@ -45,6 +45,7 @@ INSTALLED_APPS = [
         'tags',
         'cart',
         'order',
+        'accounts',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ TEMPLATES = [
                 'DIRS': [
                         os.path.join(BASE_DIR, 'templates', 'base'),
                         os.path.join(BASE_DIR, 'templates', 'contact'),
-                        os.path.join(BASE_DIR, 'templates', 'auth'),
+                        os.path.join(BASE_DIR, 'accounts', 'templates', 'accounts'),
                         os.path.join(BASE_DIR, 'templates', 'about'),
                         os.path.join(BASE_DIR, 'templates', 'home'),
                         os.path.join(BASE_DIR, 'search', 'templates', 'search'),

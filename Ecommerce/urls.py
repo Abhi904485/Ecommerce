@@ -20,15 +20,13 @@ from django.contrib import admin
 from django.urls import include, path
 
 from Ecommerce import settings
-from .views import (about_page, contact_page, login_page, register_page, logout_page, )
+from .views import (about_page, contact_page, )
 
 urlpatterns = [
         url(r'^admin/', admin.site.urls),
+        url(r'^', include('accounts.urls', namespace='accounts')),
         url(r'^about/$', about_page, name='about'),
         url(r'^contact/$', contact_page, name='contact'),
-        url(r'^login/$', login_page, name='login'),
-        url(r'^logout/$', logout_page, name='logout'),
-        url(r'^register/$', register_page, name='register'),
         url(r'^products/', include('products.urls', namespace='products'), ),
         url(r'^search/', include('search.urls', namespace='search'), ),
         url(r'^cart/', include('cart.urls', namespace='cart'), ),

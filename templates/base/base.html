@@ -2,9 +2,9 @@
 {% url 'products:list' as home_url %}
 {% url 'contact' as contact_url %}
 {% url 'about' as about_url %}
-{% url 'register' as register_url %}
-{% url 'login' as login_url %}
-{% url 'logout' as logout_url %}
+{% url 'accounts:register' as register_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:logout' as logout_url %}
 {% url 'cart:home' as cart_url %}
 
 <!doctype html>
@@ -73,12 +73,12 @@
             <div class="navbar-nav">
                 {% if request.user.is_authenticated %}
                     <a class="nav-item nav-link{% if request.path == logout_url %} active {% endif %}"
-                       href="{% url 'logout' %}">Logout</a>
+                       href="{% url 'accounts:logout' %}">Logout</a>
                 {% else %}
                     <a class="nav-item nav-link {% if request.path == login_url %} active {% endif %}"
-                       href="{% url 'login' %}">Login</a>
+                       href="{% url 'accounts:login' %}">Login</a>
                     <a class="nav-item nav-link {% if request.path == register_url %} active {% endif %}"
-                       href="{% url 'register' %}">Register</a>
+                       href="{% url 'accounts:register' %}">Register</a>
                 {% endif %}
             </div>
             {% include 'search/search.html' %}
